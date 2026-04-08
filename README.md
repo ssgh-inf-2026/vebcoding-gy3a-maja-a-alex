@@ -5,14 +5,14 @@
 Doplňte název aplikace.
 
 ## Členové týmu
-- Jméno 1
-- Jméno 2
+- Mariana
+- Alexandra
 
 ## Téma aplikace
-Stručně napište, co bude vaše aplikace dělat.
+plánovač učení
 
 ## Cílový uživatel
-Pro koho je aplikace určená?
+pro studenty
 
 ## 3 plánované funkce
 1. Doplňte

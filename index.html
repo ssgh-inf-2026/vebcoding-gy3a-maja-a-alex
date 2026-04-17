@@ -1,51 +1,123 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moje webová aplikace</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plánovač učení</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            resize: vertical;
+            min-height: 100px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        button {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #f0f0f0;
+        }
+        .plan-item {
+            background: #fdfdfd;
+            border-left: 4px solid #3498db;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>my life</h1>
-    <p class="subtitle">Toto je startovní šablona projektu pro GitHub Classroom.</p>
-  </header>
 
-  <main class="container">
-    <section class="card">
-      <h2>O projektu</h2>
-      <p>
-        Tuto šablonu si upravte podle svého tématu. Změňte nadpis, texty,
-        vstupy, tlačítka i funkce tak, aby odpovídaly vaší vlastní aplikaci.
-      </p>
-    </section>
+<div class="container">
+    <h1>📚 Můj studijní plánovač</h1>
+    
+    <div class="input-group">
+        <label for="userInput">Co se dnes naučíš?</label>
+        <textarea id="userInput" placeholder="Např.: 14:00 - Matematika (derivace), 16:00 - Čeština..."></textarea>
+    </div>
 
-    <section class="card">
-      <h2>Testovací část</h2>
-      <label for="userInput">Zadej libovolný text:</label>
-      <input type="text" id="userInput" placeholder="Sem napiš text">
+    <button id="testButton">Uložit do plánovače</button>
 
-      <button id="testButton">Vyzkoušet</button>
+    <div id="result">
+        </div>
+</div>
 
-      <p id="result">Zde se zobrazí výsledek.</p>
-    </section>
+<script>
+    document.getElementById('testButton').addEventListener('click', function() {
+        const input = document.getElementById('userInput');
+        const result = document.getElementById('result');
+        
+        if (input.value.trim() === "") {
+            alert("Nejdříve něco napiš!");
+            return;
+        }
 
-    <section class="card">
-      <h2>Co bude potřeba změnit</h2>
-      <ul>
-        <li>upravte název aplikace,</li>
-        <li>doplňte vlastní obsah,</li>
-        <li>vytvořte vlastní funkci v JavaScriptu,</li>
-        <li>upravte vzhled podle svého projektu.</li>
-      </ul>
-    </section>
-  </main>
+        // Vytvoření elementu pro novou aktivitu
+        const newActivity = document.createElement('div');
+        newActivity.className = 'plan-item';
+        
+        // Formátování textu (převedení konců řádků na odstavce pro lepší čitelnost)
+        newActivity.innerText = input.value;
 
-  <footer>
-    <p>Projekt vytvořen v rámci výuky – vibe coding.</p>
-  </footer>
+        // Přidání do výsledků
+        result.prepend(newActivity);
 
-  <script src="script.js"></script>
+        // Vymazání vstupu po uložení
+        input.value = "";
+    });
+</script>
+
 </body>
 </html>
